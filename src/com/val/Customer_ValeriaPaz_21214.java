@@ -23,7 +23,7 @@ public class Customer_ValeriaPaz_21214 {
 
     private String pinGenerator(boolean _pin) {
 
-        int iFirst = 0, iLast = 0;
+        int iFirst = 1, iLast = 1;
 
         char[] letterArray = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
                 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
@@ -31,10 +31,10 @@ public class Customer_ValeriaPaz_21214 {
         System.out.println();
         for (int i = 0; i < letterArray.length; i++) {
             if (Character.toLowerCase(firstName.charAt(0)) == letterArray[i]) {
-                iFirst = i + 1;
+                iFirst += i;
             }
             if (Character.toLowerCase(lastName.charAt(0)) == letterArray[i]) {
-                iLast = i + 1;
+                iLast += i;
             }
 
         }
