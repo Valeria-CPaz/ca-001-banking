@@ -1,23 +1,17 @@
 package com.val;
 
-public class Customer_ValeriaPaz_21214 {
+import java.util.Scanner;
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String account;
-    private String pin;
+public class Customer {
 
-    public Customer_ValeriaPaz_21214(String _firstName, String _lastName, String _email) {
+    String firstName, lastName, email, account, pin;
+
+    public Customer(String _firstName, String _lastName, String _email) {
         firstName = _firstName;
         lastName = _lastName;
         email = _email;
         account = pinGenerator(false);
         pin = pinGenerator(true);
-    }
-
-    public void show() {
-        System.out.println("name: " + firstName + " lastname: " + lastName + " email: " + email + " account: " + account + " pin: " + pin);
 
     }
 
@@ -47,5 +41,5 @@ public class Customer_ValeriaPaz_21214 {
         }
 
     }
-}
 
+}

@@ -1,6 +1,6 @@
 package com.val;
 
-public class Account_ValeriaPaz_21214 {
+public class Account {
 
     private double totalBalance = 0;
 }
