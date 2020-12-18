@@ -6,7 +6,10 @@ public class SecurityCustomer extends Security {
         return false;
     }
 
-    public boolean getCredentials(String firstName, String lastName, String accountNumber) {
-        return false;
+    public boolean getCredentials(String firstName, String lastName, String accountNumber, String pin)
+    {
+        return FileManager.hasCustomer(firstName, lastName, accountNumber, pin);
     }
+
+
 }

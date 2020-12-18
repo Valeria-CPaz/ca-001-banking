@@ -6,6 +6,12 @@ public class Customer {
 
     String firstName, lastName, email, account, pin;
 
+    CurrentAccount	ca;
+    SavingsAccount	sa;
+
+
+
+
     public Customer(String _firstName, String _lastName, String _email) {
         firstName = _firstName;
         lastName = _lastName;
@@ -13,6 +19,8 @@ public class Customer {
         account = pinGenerator(false);
         pin = pinGenerator(true);
 
+        ca = new CurrentAccount(account);
+        sa = new SavingsAccount(account);
     }
 
     private String pinGenerator(boolean _pin) {
@@ -40,6 +48,32 @@ public class Customer {
             return String.format("%02d%02d", iFirst, iLast);
         }
 
+
+
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public CurrentAccount getCa() {
+        return ca;
+    }
+
+    public void setCa(CurrentAccount ca) {
+        this.ca = ca;
+    }
+
+    public SavingsAccount getSa() {
+        return sa;
+    }
+
+    public void setSa(SavingsAccount sa) {
+        this.sa = sa;
     }
 
 }
