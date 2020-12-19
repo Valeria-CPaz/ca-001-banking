@@ -6,16 +6,9 @@ public class TestDrive {
 
     public void run() {
 
-//        testCustomer();
-//        testEmployee();
-//        testAccount();
-
-
         int userChoice;
 
-
-        do
-        {
+        do {
             userChoice = TestDrive.startMenu();
 
             switch (userChoice) {
@@ -25,16 +18,13 @@ public class TestDrive {
                     SecurityBanking sb = new SecurityBanking();
                     boolean isAuthenticated = sb.login(pin);
 
-                    if (isAuthenticated)
-                    {
+                    if (isAuthenticated) {
                         int bankEmployeeAction;
 
-                        do
-                        {
+                        do {
                             bankEmployeeAction = TestDrive.bankingMenu();
 
-                            switch (bankEmployeeAction)
-                            {
+                            switch (bankEmployeeAction) {
                                 case AppConstants.CUSTOMER_CREATE:
                                     Customer newCustomer = addCustomerForm();
                                     BankingAction.addCustomer(newCustomer);
@@ -47,12 +37,10 @@ public class TestDrive {
 
                                     int transactionChoice = 0;
 
-                                    do
-                                    {
+                                    do {
                                         transactionChoice = TestDrive.transactionMenu();
 
-                                        switch (transactionChoice)
-                                        {
+                                        switch (transactionChoice) {
                                             case AppConstants.TRANSACTION_LODGE:
                                                 BankingTransaction btl = createTransactionLodgeForm();
                                                 BankingAction.createTransaction(btl);
@@ -64,60 +52,47 @@ public class TestDrive {
                                                 TestDrive.bankingMenu();
                                                 break;
                                             default:
-                                                System.out.println("The transactionChoice was invalid!");
+                                                System.out.println("Transaction choice invalid");
                                         }
 
-                                    }
-                                    while(transactionChoice != 2);
+                                    } while (transactionChoice != 2);
 
                                     break;
 
                                 case AppConstants.CUSTOMER_LIST:
                                     BankingAction.listCustomersBalance();
-                                    //BankingAction.listCustomers();
                                     break;
                                 case AppConstants.QUIT:
-                                    startMenu();
+                                    quit();
                                     break;
                                 default:
-                                    System.out.println("The transactionChoice was invalid!");
+                                    System.out.println("invalid choice");
                             }
 
-                        }
-                        while(bankEmployeeAction != 5);
+                        } while (bankEmployeeAction != 5);
 
-                    }
-                    else
-                    {
+                    } else {
                         System.out.println("Authentication error");
-                        TestDrive.bankingMenu();
-                        return;
                     }
 
                     break;
 
                 case AppConstants.CUSTOMER:
 
-                    // Get the banking Pin from employee
-                    //String pin = getBankEmployeePin();
-
                     SecurityCustomer sc = new SecurityCustomer();
                     String[] credentials = getCustomerCredentials();
 
                     boolean isCustomerAuthenticated = sc.getCredentials(credentials[0], credentials[1], credentials[2], credentials[3]);
 
-                    if (isCustomerAuthenticated)
-                    {
+                    if (isCustomerAuthenticated) {
                         Customer c = FileManager.getCustomer(credentials[2]);
 
                         int customerAction;
 
-                        do
-                        {
+                        do {
                             customerAction = TestDrive.customerMenu();
 
-                            switch(customerAction)
-                            {
+                            switch (customerAction) {
                                 case AppConstants.TRANSACTION_LODGE:
                                     BankingTransaction btl = createTransactionLodgeForm(c);
                                     BankingAction.createTransaction(btl);
@@ -134,14 +109,11 @@ public class TestDrive {
                                     startMenu();
                                     break;
                                 default:
-                                    System.out.println("The customerAction was invalid!");
+                                    System.out.println("invalid choice");
                             }
-                        }
-                        while(customerAction != 5);
+                        } while (customerAction != 4);
 
-                    }
-                    else
-                    {
+                    } else {
                         System.out.println("error....");
                         return;
                     }
@@ -149,17 +121,16 @@ public class TestDrive {
                     break;
 
                 case 3:
-                    Quit();
+                    quit();
                     break;
                 case 4:
                     return;
             }
 
         }
-        while(userChoice != 4);
+        while (userChoice != 5);
 
     }
-
 
     private static int startMenu() {
 
@@ -189,7 +160,7 @@ public class TestDrive {
         System.out.println("1 - Lodge/Deposit ");
         System.out.println("2 - Withdraw");
         System.out.println("3 - List transactions");
-        System.out.println("4 - Quit");
+        System.out.println("4 - Return");
 
         selection = scanner.nextInt();
         return selection;
@@ -236,7 +207,7 @@ public class TestDrive {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("--------------------------\n");
-        System.out.println("Type the number account");
+        System.out.println("Type account number");
 
         String account = scanner.nextLine();
 
@@ -244,14 +215,14 @@ public class TestDrive {
 
     private static BankingTransaction createTransactionLodgeForm() {
 
-        System.out.println("Transaction lodge form goes here");
+        System.out.println("customer Transaction: lodge");
 
         Scanner myObj = new Scanner(System.in);
 
-        System.out.println("Enter the account:");
+        System.out.println("Enter account:");
         String account = myObj.nextLine();
 
-        System.out.println("Enter the amount:");
+        System.out.println("Enter amount:");
         double amount = myObj.nextDouble();
 
         System.out.println("Enter the type account (1 - Current / 2 - Savings)");
@@ -259,13 +230,12 @@ public class TestDrive {
 
         Customer c = FileManager.getCustomer(account);
 
-        if (c == null)
-        {
-            System.out.println("Customer account: "+ account +" doesn't exist");
+        if (c == null) {
+            System.out.println("Customer account: " + account + " doesn't exist");
             return null;
         }
 
-        System.out.println("Transaction lodge - account: "+ account +" amount: "+ amount +" typeAccount: "+ typeAccount +" ");
+        System.out.println("Transaction lodge - account: " + account + " amount: " + amount + " typeAccount: " + typeAccount);
 
 
         BankingTransactionLodge btl = new BankingTransactionLodge(c, amount, typeAccount);
@@ -276,17 +246,17 @@ public class TestDrive {
 
     private static BankingTransaction createTransactionLodgeForm(Customer c) {
 
-        System.out.println("Customer Transaction lodge form goes here");
+        System.out.println("customer Transaction: lodge");
 
         Scanner myObj = new Scanner(System.in);
 
-        System.out.println("Enter the amount:");
+        System.out.println("Enter amount:");
         double amount = myObj.nextDouble();
 
         System.out.println("Enter the type account (1 - Current / 2 - Savings)");
         int typeAccount = myObj.nextInt();
 
-        System.out.println("Transaction lodge - account: "+ c.getAccount() +" amount: "+ amount +" typeAccount: "+ typeAccount +" ");
+        System.out.println("Transaction lodge - account: " + c.getAccount() + " amount: " + amount + " typeAccount: " + typeAccount);
 
         BankingTransactionLodge btl = new BankingTransactionLodge(c, amount, typeAccount);
 
@@ -296,27 +266,26 @@ public class TestDrive {
 
     private static BankingTransaction createTransactionWithdrawForm() {
 
-        System.out.println("Transaction lodge form goes here");
+        System.out.println("customer Transaction: withdraw");
 
         Scanner myObj = new Scanner(System.in);
 
-        System.out.println("Enter the account:");
+        System.out.println("Enter account:");
         String account = myObj.nextLine();
 
-        System.out.println("Enter the amount:");
+        System.out.println("Enter amount:");
 
         double amount = myObj.nextDouble();
 
         System.out.println("Enter the type account (1 - Current / 2 - Savings)");
         int typeAccount = myObj.nextInt();
 
-        System.out.println("Transaction lodge amount: "+ amount +" typeAccount: "+ typeAccount +" ");
+        System.out.println("Transaction withdraw amount: " + amount + " typeAccount: " + typeAccount);
 
         Customer c = FileManager.getCustomer(account);
 
-        if (c == null)
-        {
-            System.out.println("Customer account: "+ account +" doesn't exist");
+        if (c == null) {
+            System.out.println("Customer account: " + account + " doesn't exist");
             return null;
         }
 
@@ -328,17 +297,17 @@ public class TestDrive {
 
     private static BankingTransaction createTransactionWithdrawForm(Customer c) {
 
-        System.out.println("customer Transaction lodge form goes here");
+        System.out.println("customer Transaction: withdraw");
 
         Scanner myObj = new Scanner(System.in);
 
-        System.out.println("Enter the amount:");
+        System.out.println("Enter amount:");
         double amount = myObj.nextDouble();
 
         System.out.println("Enter the type account (1 - Current / 2 - Savings)");
         int typeAccount = myObj.nextInt();
 
-        System.out.println("Transaction lodge amount: "+ c.getAccount() +" typeAccount: "+ typeAccount +" ");
+        System.out.println("Transaction amount: " + c.getAccount() + " typeAccount: " + typeAccount);
 
         BankingTransactionWithdraw btw = new BankingTransactionWithdraw(c, amount, typeAccount);
 
@@ -354,8 +323,6 @@ public class TestDrive {
 
         System.out.println("Enter the type account (1 - Current / 2 - Savings)");
         int typeAccount = myObj.nextInt();
-
-        //System.out.println("Transaction list amount: "+ c.getAccount() +" typeAccount: "+ typeAccount +" ");
 
         return typeAccount;
 
@@ -407,9 +374,8 @@ public class TestDrive {
         return v;
     }
 
-    private static void Quit()
-    {
-        System.out.println("Good bye...");
+    private static void quit() {
+        System.out.println("exiting programme");
         System.exit(0);
     }
 

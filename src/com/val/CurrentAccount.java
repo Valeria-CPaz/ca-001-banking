@@ -4,37 +4,35 @@ public class CurrentAccount extends Account {
 
     private double balance;
 
-    public CurrentAccount(String account)
-    {
+    // constructor of the current account class
+    public CurrentAccount(String account) {
         this.account = account;
-        balance = FileManager.total(account, AppConstants.CURRENT_ACCOUNT );
+        FileManager.createCustomerAccount(account, AppConstants.CURRENT_ACCOUNT);
+        balance = FileManager.total(account, AppConstants.CURRENT_ACCOUNT);
     }
 
+    // method to get balance
     public double getBalance() {
         return balance;
     }
 
+    // method to set balance
     public boolean setBalance(String type, double balance) {
-
 
         double newBalance = this.balance;
 
-        if(type.equals("L"))
+        if (type.equals("Lodge")) {
             newBalance += balance;
-        else
+        } else {
             newBalance -= balance;
+        }
 
-        if(newBalance < 0)
+        if (newBalance < 0) {
             return false;
-
-
+        }
         this.balance = newBalance;
 
         return true;
 
     }
-
-
-
-
 }

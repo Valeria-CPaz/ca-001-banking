@@ -8,6 +8,7 @@ public class SavingsAccount extends Account {
     public SavingsAccount(String account)
     {
         this.account = account;
+        FileManager.createCustomerAccount(account, AppConstants.SAVING_ACCOUNT);
         balance = FileManager.total(account, AppConstants.SAVING_ACCOUNT );
     }
 
@@ -17,29 +18,19 @@ public class SavingsAccount extends Account {
         return balance;
     }
 
-	/*
-	public void setBalance(String type, double balance) {
-
-		if(type.equals("L"))
-			this.balance += balance;
-		else
-			this.balance -= balance;
-	}
-	*/
-
     public boolean setBalance(String type, double balance) {
 
 
         double newBalance = this.balance;
 
-        if(type.equals("L"))
+        if(type.equals("Lodge")) {
             newBalance += balance;
-        else
+        } else {
             newBalance -= balance;
-
-        if(newBalance < 0)
+        }
+        if(newBalance < 0) {
             return false;
-
+        }
 
         this.balance = newBalance;
 
