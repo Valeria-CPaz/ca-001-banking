@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class TestDrive {
 
+    // method called inside main - my menu
     public void run() {
 
         int userChoice;
@@ -132,6 +133,7 @@ public class TestDrive {
 
     }
 
+    // method with start menu options
     private static int startMenu() {
 
         int selection;
@@ -150,6 +152,7 @@ public class TestDrive {
 
     }
 
+    // method with the customer menu option
     private static int customerMenu() {
 
         int selection;
@@ -166,6 +169,7 @@ public class TestDrive {
         return selection;
     }
 
+    // method that adds the customer form
     private static Customer addCustomerForm() {
 
         Scanner myObj = new Scanner(System.in);
@@ -189,6 +193,7 @@ public class TestDrive {
 
     }
 
+    // method with the transaction menu options
     private static int transactionMenu() {
 
         int selection;
@@ -202,6 +207,7 @@ public class TestDrive {
         return selection;
     }
 
+    // method to delete customers
     private static void deleteCustomer() {
 
         Scanner scanner = new Scanner(System.in);
@@ -213,6 +219,7 @@ public class TestDrive {
 
     }
 
+    // method called to create lodge transactions
     private static BankingTransaction createTransactionLodgeForm() {
 
         System.out.println("customer Transaction: lodge");
@@ -244,6 +251,7 @@ public class TestDrive {
 
     }
 
+    // method called to create lodge transactions - Overload
     private static BankingTransaction createTransactionLodgeForm(Customer c) {
 
         System.out.println("customer Transaction: lodge");
@@ -264,6 +272,7 @@ public class TestDrive {
 
     }
 
+    // method called to create withdraw transactions
     private static BankingTransaction createTransactionWithdrawForm() {
 
         System.out.println("customer Transaction: withdraw");
@@ -295,6 +304,7 @@ public class TestDrive {
 
     }
 
+    // method called to create withdraw transactions - Overload
     private static BankingTransaction createTransactionWithdrawForm(Customer c) {
 
         System.out.println("customer Transaction: withdraw");
@@ -315,6 +325,7 @@ public class TestDrive {
 
     }
 
+    // method called to create transaction history
     private static int createTransactionListForm(Customer c) {
 
         System.out.println("Customer Transaction list");
@@ -328,7 +339,7 @@ public class TestDrive {
 
     }
 
-
+    // method with employee menu options
     private static int bankingMenu() {
 
         int selection;
@@ -346,6 +357,7 @@ public class TestDrive {
 
     }
 
+    // method called to check employee pin input
     private static String getBankEmployeePin() {
 
         Scanner myObj = new Scanner(System.in);
@@ -356,24 +368,26 @@ public class TestDrive {
         return pin;
     }
 
+    // method that saves the input information inside an array to check customer credentials
     private static String[] getCustomerCredentials() {
 
-        String v[] = new String[4];
+        String variables[] = new String[4];
         Scanner myObj = new Scanner(System.in);
 
         System.out.println("Enter first name");
 
-        v[0] = myObj.nextLine(); //first name
+        variables[0] = myObj.nextLine(); //first name
         System.out.println("Enter last name");
-        v[1] = myObj.nextLine(); //last name
+        variables[1] = myObj.nextLine(); //last name
         System.out.println("Enter bank account");
-        v[2] = myObj.nextLine(); //account name
+        variables[2] = myObj.nextLine(); //account name
         System.out.println("Enter PIN");
-        v[3] = myObj.nextLine(); //pin name
+        variables[3] = myObj.nextLine(); //pin name
 
-        return v;
+        return variables;
     }
 
+    // method called to quit programme
     private static void quit() {
         System.out.println("exiting programme");
         System.exit(0);
